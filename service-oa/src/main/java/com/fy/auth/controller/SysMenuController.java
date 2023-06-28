@@ -13,16 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * <p>
- * 菜单表 前端控制器
- * </p>
- *
- * @author fy
- * @since 2023-06-03
+ * 菜单表与前端控制器
  */
 @Api(tags="菜单管理接口")
 @RestController
 @RequestMapping("/admin/system/sysMenu")
+@CrossOrigin  //跨域
 public class SysMenuController {
     @Autowired
     private SysMenuService sysMenuService;

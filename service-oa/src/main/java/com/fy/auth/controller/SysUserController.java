@@ -14,22 +14,23 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
 /**
- * <p>
- * 用户表 前端控制器
- * </p>
- *
- * @author fy
- * @since 2023-06-02
+ * 用户表与前端控制器
  */
 
 
 @Api(tags = "用户管理")
 @RestController
 @RequestMapping("/admin/system/sysUser")
+@CrossOrigin  //跨域
 public class SysUserController {
     @Autowired
     private SysUserService service;
+    @Autowired
+    private SysUserService sysUserService;
 
     //用户条件分页查询
     @ApiOperation("用户条件分页查询")
@@ -102,6 +103,11 @@ public class SysUserController {
     public Result updateStatus(@PathVariable Long id, @PathVariable Integer status) {
         service.updateStatus(id, status);
         return Result.ok();
+    }
+    @GetMapping("getCurrentUser")
+    public Result getCurrentUser(){
+        Map<String,Object> map = sysUserService.getCurrentUser();
+        return Result.ok(map);
     }
 }
 
